@@ -1,6 +1,6 @@
-import React from 'react';
-import { Search, Menu } from 'lucide-react';
+import { Search, House } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 const categories = [
   'জাতীয়',
@@ -17,32 +17,40 @@ const categories = [
 
 const LowerHeader = () => {
   return (
-    <nav className="border-b border-border bg-background">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="border-b border-border  hidden md:block bg-green-800 text-background">
+      <div className="max-w-7xl mx-auto px-8 py-3">
         <div className="flex items-center justify-between h-14">
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <Menu className="w-6 h-6 text-foreground" />
-          </div>
-
           {/* Categories */}
-          <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-foreground">
+          <ul className="flex items-center gap-6 text-sm font-medium ">
+            <li>
+              <Link
+                href="/"
+                className="inline-block transition-transform duration-200 hover:scale-125"
+              >
+                <House />
+              </Link>
+            </li>
             {categories.map((cat, index) => (
               <li
                 key={index}
-                className="cursor-pointer transition hover:text-primary"
+                className="cursor-pointer transition-all hover:border-y-2 hover:py-1 "
               >
-                {cat}
+                <Link href={cat}> {cat}</Link>
               </li>
             ))}
 
-            <li className="cursor-pointer hover:text-primary">আরও</li>
+            <li className="cursor-pointer transition-all hover:border-y-2 hover:py-1 ">
+              আরও
+            </li>
           </ul>
 
           {/* Search */}
-          <div className="hidden md:flex items-center gap-2 w-[220px]">
-            <Search size={18} className="text-muted-foreground" />
-            <Input placeholder="অনুসন্ধান করতে লিখুন" className="h-8" />
+          <div className="hidden md:flex items-center gap-2 w-55">
+            <Search size={18} />
+            <Input
+              placeholder="অনুসন্ধান করতে লিখুন"
+              className="h-8 placeholder:text-background"
+            />
           </div>
         </div>
       </div>

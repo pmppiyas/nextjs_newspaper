@@ -1,5 +1,14 @@
 import Logo from '@/app/components/shared/Logo';
-import { MapPin, Calendar, Facebook, Twitter, Youtube } from 'lucide-react';
+import MobileMenu from '@/app/components/shared/navbar/MobileMenu';
+import SocialIcon from '@/app/components/shared/navbar/SocialIcon';
+import {
+  MapPin,
+  Calendar,
+  Facebook,
+  Twitter,
+  Youtube,
+  Menu,
+} from 'lucide-react';
 
 const UpperHeader = () => {
   const today = new Date().toLocaleDateString('en-US', {
@@ -13,12 +22,13 @@ const UpperHeader = () => {
     <header className="border-b ">
       <div className="max-w-7xl mx-auto ">
         {/* Mobile Header */}
-        <div className="flex items-center justify-between py-3 md:hidden">
+        <div className="flex items-center justify-between p-3 md:hidden">
           <Logo />
+          <MobileMenu />
         </div>
 
         {/* Desktop Header */}
-        <div className=" hidden md:flex items-center justify-between p-5  ">
+        <div className=" hidden md:flex items-center justify-between py-5 px-8  ">
           {/* Left - Logo */}
           <div>
             <Logo />
@@ -38,19 +48,7 @@ const UpperHeader = () => {
           </div>
 
           {/* Right - Social Icons */}
-          <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-blue-600">
-              <Facebook size={18} />
-            </a>
-
-            <a href="#" className="hover:text-sky-500">
-              <Twitter size={18} />
-            </a>
-
-            <a href="#" className="hover:text-red-600">
-              <Youtube size={18} />
-            </a>
-          </div>
+          <SocialIcon />
         </div>
       </div>
     </header>
