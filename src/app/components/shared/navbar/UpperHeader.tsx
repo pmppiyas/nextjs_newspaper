@@ -9,6 +9,7 @@ import {
   Youtube,
   Menu,
 } from 'lucide-react';
+import Link from 'next/link';
 
 const UpperHeader = () => {
   const today = new Date().toLocaleDateString('en-US', {
@@ -48,7 +49,13 @@ const UpperHeader = () => {
           </div>
 
           {/* Right - Social Icons */}
-          <SocialIcon />
+          <div className="flex gap-4 items-center justify-center">
+            <Link href="/login" className="hover:text-primary ">
+              লগইন
+            </Link>
+            ||
+            <SocialIcon />
+          </div>
         </div>
       </div>
     </header>
