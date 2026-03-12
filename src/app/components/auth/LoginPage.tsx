@@ -4,84 +4,70 @@
 import Image from 'next/image';
 import { photos } from '@/assets/assets';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { useSignupMutation } from '@/redux/services/authAppi';
-import { toast } from 'sonner';
 import { Spinner } from '@/components/ui/spinner';
+import Link from 'next/link';
+import { useLoginMutation } from '@/redux/services/authAppi';
+import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import {
-  type SignupFormData,
-  signupSchema,
-} from '@/validations/auth.validation';
+import { StatusCodes } from 'http-status-codes';
+import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
 
-export default function SignupPage() {
+export default function LoginPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema),
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
   });
 
-  const [signup, { isLoading }] = useSignupMutation();
-
+  const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
 
-  const onSubmit = async (data: SignupFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
-      const res = await signup(data).unwrap();
-
-      if (res.success) {
-        toast.success(res.message);
-        router.push('/login');
-      } else toast.error(res.data.message);
+      const res = await login(data).unwrap();
+      console.log(res);
+      router.push('/');
+      toast.success(res.message);
     } catch (error) {
       const err = error as any;
+      if (err.data.statusCode === StatusCodes.NOT_FOUND) {
+        router.push('/signup');
+      }
       toast.error(err?.data?.message || 'An error occurred');
     }
   };
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Side - Image */}
+      {/* Left Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <Image
           src={photos.ourPhoto}
-          alt="Signup Image"
+          alt="Login Image"
           fill
           style={{ objectFit: 'cover' }}
         />
       </div>
 
-      {/* Right Side - Signup Form */}
+      {/* Login Form */}
       <div className="flex flex-1 justify-center items-center p-6 lg:p-12 bg-background">
         <div className="w-full max-w-md">
-          <h1 className="text-3xl font-bold text-primary mb-6">সাইন আপ করুন</h1>
+          <h1 className="text-3xl font-bold text-primary mb-6">লগইন করুন</h1>
 
           <form
             className="flex flex-col gap-4"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(async (data) => {
+              await onSubmit(data);
+            })}
           >
-            <div>
-              <input
-                type="text"
-                placeholder="আপনার নাম"
-                {...register('name')}
-                className="border border-border rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              {errors.name && (
-                <p className="text-destructive text-sm mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
+            {/* Email */}
             <div>
               <input
                 type="email"
@@ -96,7 +82,7 @@ export default function SignupPage() {
               )}
             </div>
 
-            {/* Password Field with Eye */}
+            {/* Password */}
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -104,6 +90,7 @@ export default function SignupPage() {
                 {...register('password')}
                 className="border border-border rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
               />
+
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -111,6 +98,7 @@ export default function SignupPage() {
               >
                 {!showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
+
               {errors.password && (
                 <p className="text-destructive text-sm mt-1">
                   {errors.password.message}
@@ -118,32 +106,7 @@ export default function SignupPage() {
               )}
             </div>
 
-            {/* Confirm Password Field with Eye */}
-            <div className="relative">
-              <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                placeholder="পাসওয়ার্ড নিশ্চিত করুন"
-                {...register('confirmPassword')}
-                className="border border-border rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-2.5 text-gray-500"
-              >
-                {!showConfirmPassword ? (
-                  <EyeOff size={18} />
-                ) : (
-                  <Eye size={18} />
-                )}
-              </button>
-              {errors.confirmPassword && (
-                <p className="text-destructive text-sm mt-1">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-            </div>
-
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading}
@@ -155,16 +118,16 @@ export default function SignupPage() {
                   লোডিং...
                 </span>
               ) : (
-                'সাইন আপ'
+                'লগইন'
               )}
             </button>
           </form>
 
           <p className="mt-4 text-sm text-muted-foreground">
-            ইতিমধ্যেই অ্যাকাউন্ট আছে?{' '}
-            <a href="/login" className="text-primary hover:underline">
-              লগইন করুন
-            </a>
+            অ্যাকাউন্ট নেই?{' '}
+            <Link href="/signup" className="text-primary hover:underline">
+              সাইন আপ করুন
+            </Link>
           </p>
         </div>
       </div>
