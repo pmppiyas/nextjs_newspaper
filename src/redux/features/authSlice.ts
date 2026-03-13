@@ -1,9 +1,3 @@
-// interface AuthState {
-//   loading: boolean;
-//   user: any;
-//   error: string | null;
-// }
-
 import { createSlice } from '@reduxjs/toolkit';
 
 // const initialState: AuthState = {
