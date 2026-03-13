@@ -4,7 +4,6 @@
 import Image from 'next/image';
 import { photos } from '@/assets/assets';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';

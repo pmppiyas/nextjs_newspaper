@@ -14,6 +14,7 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { StatusCodes } from 'http-status-codes';
 import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
+import { setCookie } from '@/utils/cookies';
 
 export default function LoginPage() {
   const {
@@ -30,7 +31,10 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await login(data).unwrap();
-      console.log(res);
+
+      const { accessToken, refreshToken } = res?.data;
+      setCookie({ accessToken, refreshToken });
+
       router.push('/');
       toast.success(res.message);
     } catch (error) {
