@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import ReduxProvider from '@/redux/provider';
 import { Toaster } from 'sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster />
-        <ReduxProvider>{children}</ReduxProvider>
+        <TooltipProvider>
+          <Toaster />
+          <ReduxProvider>{children}</ReduxProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
