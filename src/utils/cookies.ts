@@ -1,13 +1,20 @@
-import Cookies from 'js-cookie';
+'use server';
+
+import { cookies } from 'next/headers';
+
+const cookieStore = cookies();
 
 interface CookieParams {
   accessToken?: string;
   refreshToken?: string;
 }
 
-export const setCookie = ({ accessToken, refreshToken }: CookieParams) => {
+export const setCookie = async ({
+  accessToken,
+  refreshToken,
+}: CookieParams) => {
   if (accessToken) {
-    Cookies.set('access_token', accessToken, {
+    (await cookieStore).set('accessToken', accessToken, {
       expires: 7,
       path: '/',
       sameSite: 'lax',
@@ -16,7 +23,7 @@ export const setCookie = ({ accessToken, refreshToken }: CookieParams) => {
   }
 
   if (refreshToken) {
-    Cookies.set('refresh_token', refreshToken, {
+    (await cookieStore).set('refreshToken', refreshToken, {
       expires: 30,
       path: '/',
       sameSite: 'lax',
@@ -24,3 +31,7 @@ export const setCookie = ({ accessToken, refreshToken }: CookieParams) => {
     });
   }
 };
+
+export async function getCookie(name: string) {
+  return (await cookieStore).get(name)?.value || null;
+}
