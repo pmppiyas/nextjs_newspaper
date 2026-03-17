@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import NewsCardSkeleton from '@/app/components/shared/news/NewsCardSeletonX';
-import NewsListWrapper from '@/app/components/dashboard/admin/news/NewsList';
+import NewsListWrapper from '@/app/components/dashboard/admin/allNews/NewsListWrapper';
 
 type TSearchParams = Promise<Record<string, string | undefined>>;
 
