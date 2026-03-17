@@ -1,4 +1,4 @@
-import NewsCard from '@/app/components/dashboard/admin/news/NewsCard';
+import NewsCard from '@/app/components/dashboard/admin/allNews/NewsCard';
 import Pagination from '@/app/components/shared/Pagination';
 import { INews } from '@/interfaces/news.Interface';
 import getAllNews from '@/services/news/get.allNews';

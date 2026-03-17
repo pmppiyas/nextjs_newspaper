@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { env } from '@/config/env.config';
-import { getCookie } from '@/utils/cookies';
+import getCookie from '@/utils/getCookies';
 
 const serverFetchHelper = async (
   endpoint: string,
