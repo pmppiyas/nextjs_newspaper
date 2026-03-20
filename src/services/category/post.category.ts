@@ -10,5 +10,7 @@ export async function createCategory(payload: {
 
   const result = await res.json();
 
+  console.log('Fetch ', result);
+
   return result;
 }

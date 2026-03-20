@@ -11,7 +11,7 @@ export const getAllCategories = async (): Promise<ICategoryResponse> => {
   try {
     const res = await serverFetch.get('category', {
       next: {
-        revalidate: 3600,
+        revalidate: 0,
         tags: ['category'],
       },
     });

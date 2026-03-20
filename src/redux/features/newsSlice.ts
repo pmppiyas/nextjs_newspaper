@@ -11,33 +11,32 @@ const initialState: NewsState = {
   searchQuery: '',
   selectedCategory: 'All',
   sortBy: 'latest',
-  isGridView: true, // ইউজারের ভিউ প্রিফারেন্স (Grid vs List)
+  isGridView: true,
 };
 
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    // সার্চ কোয়েরি আপডেট করার জন্য
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
-    // ক্যাটাগরি ফিল্টার করার জন্য
+
     setCategory: (state, action: PayloadAction<string>) => {
       state.selectedCategory = action.payload;
     },
-    // সর্টিং পরিবর্তন করার জন্য
+
     setSortBy: (
       state,
       action: PayloadAction<'latest' | 'popular' | 'oldest'>
     ) => {
       state.sortBy = action.payload;
     },
-    // ভিউ মোড টগল করার জন্য (Grid/List)
+
     toggleViewMode: (state) => {
       state.isGridView = !state.isGridView;
     },
-    // সব ফিল্টার রিসেট করার জন্য
+
     resetFilters: (state) => {
       state.searchQuery = '';
       state.selectedCategory = 'All';
