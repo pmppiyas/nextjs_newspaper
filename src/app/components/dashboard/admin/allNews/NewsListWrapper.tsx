@@ -14,7 +14,7 @@ const NewsListWrapper = async ({ params }: NewsListProps) => {
   const { total, limit } = meta;
 
   return (
-    <div className="p-6">
+    <div className="">
       <div className="flex flex-col gap-4">
         {allNews.map((news: INews) => (
           <NewsCard key={news.id} news={news} />

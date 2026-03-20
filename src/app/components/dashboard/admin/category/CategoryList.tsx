@@ -19,7 +19,6 @@ export default function CategoryList({
 
   return (
     <>
-      <CategoryHeader />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {categories.map((cat) => (
           <CategoryCard
