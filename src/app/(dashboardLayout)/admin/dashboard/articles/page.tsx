@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import NewsCardSkeleton from '@/app/components/shared/news/NewsCardSeletonX';
 import NewsListWrapper from '@/app/components/dashboard/admin/allNews/NewsListWrapper';
+import NewsHeader from '@/app/components/dashboard/admin/allNews/NewsHeader';
 
 type TSearchParams = Promise<Record<string, string | undefined>>;
 
@@ -12,7 +13,8 @@ const ArticlesPage = async ({
   const params = await searchParams;
 
   return (
-    <div className="lg:p-6">
+    <div>
+      <NewsHeader />
       <Suspense fallback={<NewsCardSkeleton />}>
         <NewsListWrapper params={params} />
       </Suspense>
