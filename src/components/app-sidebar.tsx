@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-
 import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
@@ -14,36 +13,19 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import {
-  LayoutDashboardIcon,
-  ListIcon,
-  ChartBarIcon,
-  FolderIcon,
-  UsersIcon,
-  CameraIcon,
-  FileTextIcon,
-  Settings2Icon,
-  CircleHelpIcon,
-  SearchIcon,
-  DatabaseIcon,
-  FileChartColumnIcon,
-  FileIcon,
-} from 'lucide-react';
+
 import Logo from '@/app/components/shared/Logo';
 import { getRoutesByRole } from '@/routes/routes';
 import NavLinkClient from '@/components/navlink-client';
+import { IRole } from '@/types/auth';
 
-const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
-};
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  role: IRole | undefined;
+}
 
-const roleWiseNavs = getRoutesByRole('ADMIN');
+export function AppSidebar({ role, ...props }: AppSidebarProps) {
+  const roleWiseNavs = getRoutesByRole(role || 'READER');
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -76,7 +58,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser
+          user={{
+            name: 'Your Name',
+            email: 'user@example.com',
+            avatar: '/avatars/default.jpg',
+          }}
+        />
       </SidebarFooter>
     </Sidebar>
   );

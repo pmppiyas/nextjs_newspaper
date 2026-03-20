@@ -11,7 +11,7 @@ import { IRole } from '@/types/auth';
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const accessToken = req.cookies.get('accessToken')?.value;
-
+  console.log('PathName', pathname);
   if (!accessToken) {
     const routeOwner = getRouteOwner(pathname);
 
@@ -28,6 +28,8 @@ export async function proxy(req: NextRequest) {
     const { payload } = await jwtVerify(accessToken, secret);
     const userRole = payload.role as IRole;
 
+    console.log('Role=>', userRole);
+
     if (isAuthRoute(pathname)) {
       return NextResponse.redirect(
         new URL(getDefaultDashboardRoutes(userRole), req.url)
@@ -35,6 +37,8 @@ export async function proxy(req: NextRequest) {
     }
 
     const routeOwner = getRouteOwner(pathname);
+
+    console.log('Route Owner', routeOwner);
 
     if (routeOwner && routeOwner !== 'COMMON' && routeOwner !== userRole) {
       return NextResponse.redirect(
