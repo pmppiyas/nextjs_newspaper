@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { photos } from '@/assets/assets';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Spinner } from '@/components/ui/spinner';
@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import { StatusCodes } from 'http-status-codes';
 import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
 import { setCookie } from '@/utils/cookies';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function LoginPage() {
   const {
@@ -31,7 +32,6 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await login(data).unwrap();
-
       const { accessToken, refreshToken } = res?.data;
       setCookie({ accessToken, refreshToken });
 
