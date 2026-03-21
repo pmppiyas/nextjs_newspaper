@@ -17,14 +17,14 @@ import {
 import Logo from '@/app/components/shared/Logo';
 import { getRoutesByRole } from '@/routes/routes';
 import NavLinkClient from '@/components/navlink-client';
-import { IRole } from '@/types/auth';
+import { IUser } from '@/interfaces/user.interface';
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  role: IRole | undefined;
+  user: IUser | undefined;
 }
 
-export function AppSidebar({ role, ...props }: AppSidebarProps) {
-  const roleWiseNavs = getRoutesByRole(role || 'READER');
+export function AppSidebar({ user, ...props }: AppSidebarProps) {
+  const roleWiseNavs = getRoutesByRole(user?.role || 'READER');
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -57,12 +57,13 @@ export function AppSidebar({ role, ...props }: AppSidebarProps) {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="">
         <NavUser
           user={{
-            name: 'Your Name',
-            email: 'user@example.com',
-            avatar: '/avatars/default.jpg',
+            name: user?.name || 'Guest',
+            email: user?.email || 'user@example.com',
+            avatar: user?.picture || '/avatars/default.jpg',
+            role: (user?.role as string) || 'READER',
           }}
         />
       </SidebarFooter>
