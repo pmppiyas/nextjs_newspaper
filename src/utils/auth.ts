@@ -1,6 +1,5 @@
-'use server';
-
 import { IRole } from '@/types/auth';
+import { User, Bell, CreditCard } from 'lucide-react';
 
 type RouteConfig = {
   exact: string[];
@@ -63,4 +62,27 @@ export const getDefaultDashboardRoutes = (role: IRole): string => {
     default:
       return '/';
   }
+};
+
+export const getUserMenuItems = (role: IRole | undefined) => {
+  const baseDashboardPath =
+    role === 'READER' ? '/dashboard' : `/${role?.toLowerCase()}/dashboard`;
+
+  return [
+    {
+      label: 'Account',
+      href: `${baseDashboardPath}/account`,
+      icon: User,
+    },
+    {
+      label: 'Billing',
+      href: `${baseDashboardPath}/billing`,
+      icon: CreditCard,
+    },
+    {
+      label: 'Notification',
+      href: `${baseDashboardPath}/notifications`,
+      icon: Bell,
+    },
+  ];
 };
