@@ -1,4 +1,4 @@
-import { IRole } from '@/types/auth';
+import { IRole, IStatus } from '@/types/auth';
 
 export interface IUserInfo {
   id: string;
@@ -13,4 +13,13 @@ export interface IUser {
   picture: string;
   createdAt: string;
   role: IRole;
+}
+
+export interface IRequest {
+  id: string;
+  status: IStatus;
+  role: IRole;
+  userId: string;
+  user: IUser;
+  createdAt: Date;
 }

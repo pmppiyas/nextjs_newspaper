@@ -45,7 +45,7 @@ export const adminRoutes: RouteSection[] = [
       },
       {
         title: 'Verification',
-        href: '/admin/dashboard/requests',
+        href: '/admin/dashboard/journalists/requests',
         iconName: 'UserCheck',
       },
       {

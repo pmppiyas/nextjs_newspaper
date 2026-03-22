@@ -20,7 +20,6 @@ import { IRole } from '@/types/auth';
 import { getUserMenuItems } from '@/utils/auth';
 import { EllipsisVerticalIcon, LogOutIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 export function NavUser({
   user,
