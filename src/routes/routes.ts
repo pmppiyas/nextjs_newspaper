@@ -131,23 +131,32 @@ export const readerRoutes: RouteSection[] = [
     nav: [
       {
         title: 'Overview',
-        href: '/reader/dashboard',
+        href: '/dashboard',
         iconName: 'LayoutDashboard',
       },
       {
         title: 'Bookmarks',
-        href: '/reader/dashboard/bookmarks',
+        href: '/dashboard/bookmarks',
         iconName: 'Bookmark',
       },
       {
         title: 'Reading History',
-        href: '/reader/dashboard/history',
+        href: '/dashboard/history',
         iconName: 'History',
       },
       {
         title: 'My Comments',
-        href: '/reader/dashboard/comments',
+        href: '/dashboard/comments',
         iconName: 'MessageSquare',
+      },
+    ],
+  },
+  {
+    title: 'Invitation',
+    nav: [
+      {
+        title: 'Be A Journalist',
+        href: '/dashboard/be_a_journalist',
       },
     ],
   },
