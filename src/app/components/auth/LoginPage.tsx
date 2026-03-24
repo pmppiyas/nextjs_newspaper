@@ -17,6 +17,7 @@ import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
 import { setCookie } from '@/utils/cookies';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+
 export default function LoginPage() {
   const {
     register,
