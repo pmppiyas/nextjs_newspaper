@@ -9,14 +9,13 @@ export const getMe = async () => {
       },
     });
 
-    const result = await res.json();
-    if (result.success) {
-      return result.data;
-    } else {
+    if (!res.ok) {
       return {};
     }
+
+    const result = await res.json();
+    return result?.success ? result.data : {};
   } catch (err) {
-    console.log(err);
-    return err.message;
+    return err instanceof Error ? err.message : 'Internal Server Error';
   }
 };

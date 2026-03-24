@@ -21,8 +21,8 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
       '@hookform/resolvers':
-        specifier: ^2.9.11
-        version: 2.9.11(react-hook-form@7.71.2(react@19.2.3))
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.71.2(react@19.2.3))
       '@reduxjs/toolkit':
         specifier: ^2.11.2
         version: 2.11.2(react-redux@9.2.0(@types/react@19.2.14)(react@19.2.3)(redux@5.0.1))(react@19.2.3)
@@ -388,10 +388,10 @@ packages:
     peerDependencies:
       hono: ^4
 
-  '@hookform/resolvers@2.9.11':
-    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+  '@hookform/resolvers@5.2.2':
+    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
-      react-hook-form: ^7.0.0
+      react-hook-form: ^7.55.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4459,8 +4459,9 @@ snapshots:
     dependencies:
       hono: 4.12.7
 
-  '@hookform/resolvers@2.9.11(react-hook-form@7.71.2(react@19.2.3))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.71.2(react@19.2.3))':
     dependencies:
+      '@standard-schema/utils': 0.3.0
       react-hook-form: 7.71.2(react@19.2.3)
 
   '@humanfs/core@0.19.1': {}

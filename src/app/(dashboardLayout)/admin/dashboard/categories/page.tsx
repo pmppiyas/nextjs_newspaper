@@ -2,6 +2,7 @@ import CategoryCardSkeleton from '@/app/components/dashboard/admin/category/Cate
 import CategoryHeader from '@/app/components/dashboard/admin/category/CategoryHeader';
 import CategoryWrapper from '@/app/components/dashboard/admin/category/CategoryWrapper';
 import { Suspense } from 'react';
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   return (
