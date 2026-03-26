@@ -2,7 +2,7 @@
 
 import { serverFetch } from '@/utils/serverFetch';
 
-async function getAllNews(params: Record<string, string | undefined>) {
+async function getAllNews(params?: Record<string, string | undefined>) {
   const queryParams = new URLSearchParams(params as Record<string, string>);
 
   try {
