@@ -45,7 +45,6 @@ export const newsSlice = createSlice({
   },
 });
 
-// অ্যাকশনগুলো এক্সপোর্ট করুন
 export const {
   setSearchQuery,
   setCategory,
@@ -54,5 +53,4 @@ export const {
   resetFilters,
 } = newsSlice.actions;
 
-// রিডিউসারটি এক্সপোর্ট করুন
 export const newsReducer = newsSlice.reducer;
