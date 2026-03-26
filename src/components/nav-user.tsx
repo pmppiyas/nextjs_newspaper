@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { logout } from '@/services/auth/logout';
 import { IRole } from '@/types/auth';
 import { getUserMenuItems } from '@/utils/auth';
 import { EllipsisVerticalIcon, LogOutIcon } from 'lucide-react';
@@ -87,7 +88,7 @@ export function NavUser({
               ))}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logout()}>
               <LogOutIcon />
               Log out
             </DropdownMenuItem>

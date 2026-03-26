@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { JWTPayload } from 'jose';
 
 interface AuthState {
-  user: any;
+  user: JWTPayload | null;
   token: string | null;
 }
 
