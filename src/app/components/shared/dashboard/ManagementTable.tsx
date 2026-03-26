@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/table';
 import { Edit, Eye, MoreHorizontal, Trash } from 'lucide-react';
 import React, { useEffect } from 'react';
-import Empty from '@/app/components/shared/dashboard/Empty';
+import Empty from '@/app/components/shared/Empty';
 import { IManagementTableProps } from '@/interfaces/dashboard.interface';
 
 function ManagementTable<T>({

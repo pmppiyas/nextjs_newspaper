@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { IUser } from '@/interfaces/user.interface';
 import { getMe } from '@/services/auth/getMe';
-import { Suspense } from 'react'; // ১. ইমপোর্ট করুন
+import { Suspense } from 'react';
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getMe();

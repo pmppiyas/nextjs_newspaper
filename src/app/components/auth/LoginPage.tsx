@@ -17,7 +17,6 @@ import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
 import { setCookie } from '@/utils/cookies';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-
 export default function LoginPage() {
   const {
     register,
@@ -37,6 +36,8 @@ export default function LoginPage() {
       setCookie({ accessToken, refreshToken });
 
       router.push('/');
+
+      console.log(res);
       toast.success(res.message);
     } catch (error) {
       const err = error as any;
