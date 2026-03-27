@@ -1,10 +1,17 @@
+import CategorySection from '@/app/components/common/CategorySection';
 import { photos } from '@/assets/assets';
+import { ICategory } from '@/interfaces/news.Interface';
+import { getAllCategories } from '@/services/category/get.allCategory';
+import getAllNews from '@/services/news/get.allNews';
 import Image from 'next/image';
 
-export default function Home() {
+export default async function Home() {
+  const { data: categories } = await getAllCategories();
+  const { news } = await getAllNews();
+
   return (
-    <div className="flex  flex-col min-h-screen items-center ">
-      <div className="max-w-7xl mx-auto px-4 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full md:px-8">
+    <div className="flex  flex-col min-h-screen items-center max-w-7xl mx-auto px-4 md:px-8 lg:px-12 mt-6 ">
+      <div className=" grid grid-cols-1 lg:grid-cols-12 gap-6 w-full ">
         {/* Left Column: Main + secondary news */}
         <div className="lg:col-span-8 flex flex-col gap-6 w-full">
           {/* Featured News */}
@@ -98,6 +105,17 @@ export default function Home() {
             </p>
           </div>
         </aside>
+      </div>
+
+      <div>
+        {categories.map((category: ICategory) => (
+          <CategorySection
+            key={category.id}
+            title={category.name}
+            categoryId={category.id}
+            news={news}
+          />
+        ))}
       </div>
     </div>
   );

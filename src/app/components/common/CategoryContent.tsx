@@ -22,7 +22,7 @@ export default async function CategoryContent({
   const filteredNews = news.filter((item) => item.categoryId === category.id);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8  px-4 md:px-8 lg:px-12 ">
       <NewsGrid newsList={filteredNews} />
     </div>
   );
