@@ -1,12 +1,6 @@
 import { serverFetch } from '@/utils/serverFetch';
 import { ICategory } from '@/interfaces/news.Interface';
 
-interface ICategoryResponse {
-  success: boolean;
-  message: string;
-  data: ICategory[];
-}
-
 export const getAllCategories = async (): Promise<ICategoryResponse> => {
   try {
     const res = await serverFetch.get('category', {
@@ -20,15 +14,14 @@ export const getAllCategories = async (): Promise<ICategoryResponse> => {
       throw new Error('Failed to fetch categories');
     }
 
-    const result: ICategoryResponse = await res.json();
+    const result = await res.json();
 
     return {
       success: result.success || false,
       message: result.message || '',
-      data: result.data || [],
+      categories: result.data || [],
     };
   } catch (error) {
-    console.error('Error fetching categories:', error);
     return {
       success: false,
       message: 'Internal Server Error',

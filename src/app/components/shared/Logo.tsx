@@ -2,9 +2,12 @@ import Link from 'next/link';
 
 const Logo = () => {
   return (
-    <div className="mx-auto text-3xl font-medium cursor-pointer">
-      <Link href="/">NewsPaper</Link>
-    </div>
+    <Link
+      href="/"
+      className="text-2xl font-black text-foreground tracking-tighter"
+    >
+      নিউজ<span className="text-primary">পোর্টাল</span>
+    </Link>
   );
 };
 

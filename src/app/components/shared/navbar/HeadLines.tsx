@@ -32,13 +32,13 @@ const HeadlineTicker: React.FC = () => {
         }
       `}</style>
 
-      <div className="w-full overflow-hidden border-t border-b border-border bg-background text-foreground">
-        <div className="flex items-center py-2 px-4">
-          <span className="font-semibold text-primary mr-4 shrink-0">
+      <div className="max-w-7xl mx-auto overflow-hidden border-t border-b border-border bg-background text-foreground mt-6 ">
+        <div className="flex items-center  px-4 *:py-2">
+          <span className="font-semibold text-primary mr-4 shrink-0 ">
             ব্রেকিং শিরোনাম
           </span>
 
-          <div className="relative flex-1 overflow-hidden">
+          <div className="relative flex-1 overflow-hidden bg-red-200">
             <div className="ticker-track">
               {tickerItems.map((headline, idx) => (
                 <Link
