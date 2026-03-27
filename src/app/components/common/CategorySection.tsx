@@ -23,7 +23,7 @@ const CategorySection = ({ title, news, categoryId }: IProps) => {
 
       <NewsGrid newsList={filteredNews} />
 
-      <div className=" flex item-center justify-center mt-10">
+      <div className=" flex item-center justify-center mt-8">
         <Link
           href={`/${title}`}
           className="flex items-center gap-1 text-sm font-medium text-primary hover:underline  "

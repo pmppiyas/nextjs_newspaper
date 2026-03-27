@@ -6,6 +6,7 @@ export interface ICategory {
 }
 
 export interface INews {
+  news: any;
   id: string;
   title: string;
   content: string;

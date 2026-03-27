@@ -35,7 +35,7 @@ export default function LoginPage() {
       const { accessToken, refreshToken } = res?.data;
       setCookie({ accessToken, refreshToken });
 
-      router.push('/');
+      router.push('/dashboard');
 
       console.log(res);
       toast.success(res.message);

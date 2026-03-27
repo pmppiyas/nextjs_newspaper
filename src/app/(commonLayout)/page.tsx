@@ -6,7 +6,7 @@ import getAllNews from '@/services/news/get.allNews';
 import Image from 'next/image';
 
 export default async function Home() {
-  const { data: categories } = await getAllCategories();
+  const { categories } = await getAllCategories();
   const { news } = await getAllNews();
 
   return (

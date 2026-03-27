@@ -1,17 +1,13 @@
 import Logo from '@/app/components/shared/Logo';
 import MobileMenu from '@/app/components/shared/navbar/MobileMenu';
 import SocialIcon from '@/app/components/shared/navbar/SocialIcon';
-import {
-  MapPin,
-  Calendar,
-  Facebook,
-  Twitter,
-  Youtube,
-  Menu,
-} from 'lucide-react';
+import { getMe } from '@/services/auth/getMe';
+import { MapPin, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
-const UpperHeader = () => {
+const UpperHeader = async () => {
+  const user = await getMe();
+  console.log(user);
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -50,9 +46,21 @@ const UpperHeader = () => {
 
           {/* Right - Social Icons */}
           <div className="flex gap-4 items-center justify-center">
-            <Link href="/login" className="hover:text-primary ">
-              লগইন
-            </Link>
+            {user && user?.role ? (
+              <Link
+                href="/dashboard"
+                className="hover:text-primary transition-colors font-medium"
+              >
+                ড্যাশবোর্ড
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="hover:text-primary transition-colors font-medium"
+              >
+                লগইন
+              </Link>
+            )}
             ||
             <SocialIcon />
           </div>
