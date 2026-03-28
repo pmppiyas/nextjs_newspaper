@@ -14,3 +14,11 @@ export interface IManagementTableProps<T> {
   emptyMessage?: string;
   isAdmin?: boolean;
 }
+
+export interface IAdminStats {
+  news: number;
+  reader: number;
+  journalist: number;
+  views: number;
+  pendingJournalist: number;
+}

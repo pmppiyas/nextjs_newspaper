@@ -1,11 +1,19 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import React from 'react';
 
 interface IAction {
   label: string;
   onClick?: () => void;
   icon?: React.ReactNode;
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link';
 }
 
 interface ReusableHeaderProps {
@@ -45,16 +53,17 @@ const ReusableHeader = ({
 
         {/* Actions */}
         {actions.length > 0 && (
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap items-center md:justify-end md:ml-0">
             {actions.map((action, index) => (
-              <button
+              <Button
                 key={index}
+                variant={action.variant || 'default'}
                 onClick={action.onClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+                className="flex items-center gap-2 font-medium"
               >
-                {action.icon && <span>{action.icon}</span>}
+                {action.icon && action.icon}
                 {action.label}
-              </button>
+              </Button>
             ))}
           </div>
         )}

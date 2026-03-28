@@ -2,11 +2,11 @@ import NewsForm from '@/app/components/dashboard/admin/drafts/NewsForm';
 import { getAllCategories } from '@/services/category/get.allCategory';
 
 const DraftsWrapper = async () => {
-  const { data } = await getAllCategories();
+  const { categories } = await getAllCategories();
 
   return (
     <>
-      <NewsForm categories={data} />
+      <NewsForm categories={categories} />
     </>
   );
 };
