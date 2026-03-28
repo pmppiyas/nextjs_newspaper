@@ -1,9 +1,9 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-const StatsSkeleton = () => {
+const StatsSkeleton = ({ length = 4 }: { length?: number }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {Array.from({ length: 4 }).map((_, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {Array.from({ length }).map((_, index) => (
         <div
           key={index}
           className="bg-card border rounded-xl p-5 flex items-center gap-4 h-25 shadow-sm"

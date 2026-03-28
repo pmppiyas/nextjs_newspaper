@@ -11,7 +11,7 @@ import { Spinner } from '@/components/ui/spinner';
 import Link from 'next/link';
 import { useLoginMutation } from '@/redux/services/authAppi';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { StatusCodes } from 'http-status-codes';
 import { loginSchema, type LoginFormData } from '@/validations/auth.validation';
 import { setCookie } from '@/utils/cookies';
@@ -29,13 +29,17 @@ export default function LoginPage() {
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+
+  const redirect = searchParams.get('redirect');
+
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await login(data).unwrap();
       const { accessToken, refreshToken } = res?.data;
       setCookie({ accessToken, refreshToken });
 
-      router.push('/dashboard');
+      router.push(redirect || '/');
 
       console.log(res);
       toast.success(res.message);

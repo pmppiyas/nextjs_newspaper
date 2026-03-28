@@ -28,7 +28,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
           setIsBookmarked(response.data);
         }
       } catch (error) {
-        console.error('বুকমার্ক স্ট্যাটাস লোড হয়নি', error);
+        console.error('বুকমার্ক স্ট্যাটাস লোড হয়নি');
       }
     };
 
@@ -49,6 +49,10 @@ const NewsCard = ({ news }: NewsCardProps) => {
       if (response.success) {
         router.refresh();
         toast.success(response.message);
+      } else if (response.statusCode === 401) {
+        router.replace('/login');
+        setIsBookmarked(previousState);
+        toast.error('অনুগ্রহ করে লগইন করুন');
       } else {
         setIsBookmarked(previousState);
         toast.error(response.message);
@@ -71,12 +75,14 @@ const NewsCard = ({ news }: NewsCardProps) => {
     <div className="group bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full relative">
       <Link href={`/news/${news.id}`}>
         <div className="relative h-44 w-full overflow-hidden">
-          <Image
-            src={news.imageUrl}
-            alt={news.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+          {news?.imageUrl && (
+            <Image
+              src={news?.imageUrl}
+              alt={news.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          )}
           <div className="absolute top-3 left-3">
             <span className="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
               {news?.category?.name}

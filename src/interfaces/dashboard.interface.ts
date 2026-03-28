@@ -22,3 +22,10 @@ export interface IAdminStats {
   views: number;
   pendingJournalist: number;
 }
+
+export interface IReaderStats {
+  readNews: number;
+  comments: number;
+  bookmarks: number;
+  readingHours?: number;
+}

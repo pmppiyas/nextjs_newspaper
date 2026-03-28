@@ -53,15 +53,17 @@ const Page = async ({ params }: IProps) => {
         </div>
 
         {/* Image Section */}
-        <div className="relative w-full aspect-video md:aspect-21/9">
-          <Image
-            src={news.imageUrl}
-            alt={news.title}
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+        {news.imageUrl && (
+          <div className="relative w-full aspect-video md:aspect-21/9">
+            <Image
+              src={news.imageUrl}
+              alt={news.title}
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        )}
 
         <div className="p-6 md:p-8">
           <div className="prose prose-slate max-w-none dark:prose-invert">
