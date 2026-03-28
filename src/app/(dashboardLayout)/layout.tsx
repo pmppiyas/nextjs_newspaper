@@ -1,3 +1,4 @@
+import { AppSidebarSkeleton } from '@/app/components/shared/skeleton/AppSidebarSkeleton';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
@@ -10,7 +11,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider className="container max-w-7xl mx-auto">
-      <Suspense fallback={<div>Loading Sidebar...</div>}>
+      <Suspense fallback={<AppSidebarSkeleton />}>
         <AppSidebar user={(user as IUser) || undefined} />
       </Suspense>
 

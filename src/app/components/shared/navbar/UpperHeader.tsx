@@ -19,13 +19,13 @@ const UpperHeader = async () => {
     <header className="border-b ">
       <div className="max-w-7xl mx-auto ">
         {/* Mobile Header */}
-        <div className="flex items-center justify-between p-3 md:hidden">
+        <div className="flex items-center justify-between p-2 md:hidden">
           <Logo />
           <MobileMenu />
         </div>
 
         {/* Desktop Header */}
-        <div className=" hidden md:flex items-center justify-between py-5 px-8  ">
+        <div className=" hidden md:flex items-center justify-between py-3 px-8  ">
           {/* Left - Logo */}
           <div>
             <Logo />

@@ -15,7 +15,7 @@ const JournalistHeader = ({ requestCount = 0 }: IJournalistHeaderProps) => {
   return (
     <div className="w-full">
       <ReusableHeader
-        icon={<Users className="w-6 h-6" />}
+        icon={<Users className="w-5 h-5" />}
         title="জার্নালিস্ট ম্যানেজমেন্ট"
         description="প্ল্যাটফর্মের সকল জার্নালিস্টদের প্রোফাইল এবং তাদের রিকোয়েস্ট স্ট্যাটাস পরিচালনা করুন"
         actions={[

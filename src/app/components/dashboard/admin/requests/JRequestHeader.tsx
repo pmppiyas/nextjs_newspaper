@@ -11,7 +11,7 @@ const JRequestHeader = () => {
   return (
     <div className="w-full">
       <ReusableHeader
-        icon={<UserCheck className="w-6 h-6" />}
+        icon={<UserCheck className="w-5 h-5" />}
         title="জার্নালিস্ট রেজিস্ট্রেশন রিকোয়েস্ট"
         description="নতুন জার্নালিস্টদের আবেদনগুলো পর্যালোচনা করুন এবং তাদের প্রোফাইল এপ্রুভ বা রিজেক্ট করুন।"
         actions={[

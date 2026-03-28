@@ -68,17 +68,17 @@ const BeAJournalistForm = () => {
 
       <div className="grid md:grid-cols-3 gap-6 mb-12">
         <FeatureCard
-          icon={<Newspaper className="w-6 h-6 text-blue-500" />}
+          icon={<Newspaper className="w-5 h-5 text-blue-500" />}
           title="নিউজ পাবলিশ"
           desc="সরাসরি পোর্টাল থেকে আপনার নিউজ পাবলিশ করার ক্ষমতা পাবেন।"
         />
         <FeatureCard
-          icon={<ShieldCheck className="w-6 h-6 text-green-500" />}
+          icon={<ShieldCheck className="w-5 h-5 text-green-500" />}
           title="ভেরিফাইড প্রোফাইল"
           desc="আপনার নামের পাশে একটি অফিসিয়াল জার্নালিস্ট ব্যাজ যুক্ত হবে।"
         />
         <FeatureCard
-          icon={<Zap className="w-6 h-6 text-amber-500" />}
+          icon={<Zap className="w-5 h-5 text-amber-500" />}
           title="কুইক এক্সেস"
           desc="ড্যাশবোর্ডের বিশেষ টুলস ব্যবহার করে দ্রুত রিপোর্ট তৈরি করতে পারবেন।"
         />
