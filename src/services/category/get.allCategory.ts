@@ -1,7 +1,7 @@
 import { serverFetch } from '@/utils/serverFetch';
 import { ICategory } from '@/interfaces/news.Interface';
 
-export const getAllCategories = async (): Promise<ICategoryResponse> => {
+export const getAllCategories = async (): Promise<ICategory> => {
   try {
     const res = await serverFetch.get('category', {
       next: {

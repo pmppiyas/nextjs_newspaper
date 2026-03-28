@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const UpperHeader = async () => {
   const user = await getMe();
-  console.log(user);
+
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -26,7 +26,6 @@ const UpperHeader = async () => {
 
         {/* Desktop Header */}
         <div className=" hidden md:flex items-center justify-between py-3 px-8  ">
-          {/* Left - Logo */}
           <div>
             <Logo />
           </div>
