@@ -1,14 +1,9 @@
-import CategorySection from '@/app/components/common/CategorySection';
+import { Suspense } from 'react';
+import CommonPageWrapper from '@/app/components/common/CommonPageWrapper';
 import { photos } from '@/assets/assets';
-import { ICategory } from '@/interfaces/news.Interface';
-import { getAllCategories } from '@/services/category/get.allCategory';
-import getAllNews from '@/services/news/get.allNews';
 import Image from 'next/image';
 
 export default async function Home() {
-  const { categories } = await getAllCategories();
-  const { news } = await getAllNews();
-
   return (
     <div className="flex  flex-col min-h-screen items-center max-w-7xl mx-auto px-4 md:px-8 lg:px-12 mt-6 ">
       <div className=" grid grid-cols-1 lg:grid-cols-12 gap-6 w-full ">
@@ -106,17 +101,9 @@ export default async function Home() {
           </div>
         </aside>
       </div>
-
-      <div>
-        {categories.map((category: ICategory) => (
-          <CategorySection
-            key={category.id}
-            title={category.name}
-            categoryId={category.id}
-            news={news}
-          />
-        ))}
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <CommonPageWrapper />
+      </Suspense>
     </div>
   );
 }

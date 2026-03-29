@@ -1,7 +1,13 @@
 import { serverFetch } from '@/utils/serverFetch';
 import { ICategory } from '@/interfaces/news.Interface';
 
-export const getAllCategories = async (): Promise<ICategory> => {
+export interface ICategoryResponse {
+  success: boolean;
+  message: string;
+  categories: ICategory[];
+}
+
+export const getAllCategories = async (): Promise<ICategoryResponse> => {
   try {
     const res = await serverFetch.get('category', {
       next: {
@@ -25,7 +31,7 @@ export const getAllCategories = async (): Promise<ICategory> => {
     return {
       success: false,
       message: 'Internal Server Error',
-      data: [],
+      categories: [],
     };
   }
 };
