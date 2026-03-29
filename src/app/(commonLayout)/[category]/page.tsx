@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import Header from '@/app/components/shared/Header';
-import CategoryContent from '@/app/components/common/CategoryContent';
+import CategoryContent from '@/app/components/common/[category]/CategoryContent';
 
 import SquareNewsCardSkeleton from '@/app/components/shared/skeleton/SquareNewsCardSkeleton';
 interface IProps {
