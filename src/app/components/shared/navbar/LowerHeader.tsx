@@ -1,21 +1,11 @@
 import { Search, House } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import { getAllCategories } from '@/services/category/get.allCategory';
 
-const categories = [
-  'জাতীয়',
-  'আন্তর্জাতিক',
-  'রাজনীতি',
-  'অর্থনীতি',
-  'খেলাধুলা',
-  'বিনোদন',
-  'বাংলাদেশ',
-  'ইসলামী বিশ্ব',
-  'বিশেষ প্রতিবেদন',
-  'বিশেষ সংখ্যা',
-];
+const LowerHeader = async () => {
+  const { categories } = await getAllCategories();
 
-const LowerHeader = () => {
   return (
     <nav className="border-b border-border  hidden md:block bg-green-800 text-background">
       <div className="max-w-7xl mx-auto px-8 py-3">
@@ -35,7 +25,7 @@ const LowerHeader = () => {
                 key={index}
                 className="cursor-pointer transition-all hover:border-y-2 hover:py-1 "
               >
-                <Link href={cat}> {cat}</Link>
+                <Link href={`/${cat.name}`}> {cat.name}</Link>
               </li>
             ))}
 

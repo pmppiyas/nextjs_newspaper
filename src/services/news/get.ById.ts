@@ -1,7 +1,9 @@
 import { serverFetch } from '@/utils/serverFetch';
 
 export async function getNewsById(newsId: string) {
-  const res = await serverFetch.get(`post/${newsId}`);
+  const res = await serverFetch.get(`post/${newsId}`, {
+    next: { revalidate: 0 },
+  });
 
   if (!res.ok) {
     return {
