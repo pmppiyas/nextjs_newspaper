@@ -42,6 +42,10 @@ const NewsCard = ({ news }: { news: INews }) => {
   const handleView = async (newsId: string) => {
     router.push(`/news/${newsId}`);
   };
+
+  const handleEdit = async (newsId: string) => {
+    router.push(`articles/update/${newsId}`);
+  };
   return (
     <>
       <div className="group bg-card text-card-foreground border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center p-3 gap-5">
@@ -93,11 +97,15 @@ const NewsCard = ({ news }: { news: INews }) => {
         </div>
 
         <div className="flex sm:flex-col items-center gap-2 w-full sm:w-auto sm:border-l sm:pl-5 sm:h-24">
-          <Button className="flex-1 sm:flex-none p-2 bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors group/btn">
+          <Button
+            onClick={() => handleEdit(news.id)}
+            className="flex-1 sm:flex-none p-2 bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors group/btn"
+          >
             <Edit size={18} />
             Edit
           </Button>
-          <Button onClick={()=> handleView(news.id)}
+          <Button
+            onClick={() => handleView(news.id)}
             className="flex-1 sm:flex-none p-2 bg-popover text-foreground hover:bg-chart-3 hover:text-background rounded-lg transition-colors"
             variant="outline"
           >

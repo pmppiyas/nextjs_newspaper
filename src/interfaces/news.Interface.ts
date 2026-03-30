@@ -1,7 +1,7 @@
 export interface ICategory {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   createdAt: string;
 }
 
@@ -18,4 +18,9 @@ export interface INews {
   categoryId: string;
   category: ICategory;
   tags?: string[];
+}
+
+export interface ITag {
+  id: string;
+  name: string;
 }
