@@ -1,4 +1,5 @@
 import UpdateNewsForm from '@/app/components/shared/dashboard/UpdateNewsForm';
+import UpdateNewsHeader from '@/app/components/shared/dashboard/UpdateNewsHeader';
 import NotFound from '@/app/components/shared/NotFound';
 import { getMe } from '@/services/auth/getMe';
 import { getAllCategories } from '@/services/category/get.allCategory';
@@ -14,7 +15,14 @@ const UpdateNewsWrapper = async ({ newsId }: { newsId: string }) => {
   const userInfo = await getMe();
 
   return (
-    <UpdateNewsForm news={news} categories={categories} role={userInfo?.role} />
+    <>
+      <UpdateNewsHeader role={userInfo?.role} />
+      <UpdateNewsForm
+        news={news}
+        categories={categories}
+        role={userInfo?.role}
+      />
+    </>
   );
 };
 
