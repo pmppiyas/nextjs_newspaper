@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -12,50 +12,61 @@ import {
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-import { useRouter } from 'next/navigation';
 import { createCategory } from '@/services/category/post.category';
+import { ICategory } from '@/interfaces/news.Interface';
+import { updateCategory } from '@/services/category/update.Category';
 
 interface ICategoryDialogProps {
   open: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  initialData?: ICategory | null;
 }
 
 const CategoryDialog: React.FC<ICategoryDialogProps> = ({
   open,
   onClose,
   onSuccess,
+  initialData,
 }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const router = useRouter();
+  const isEditMode = !!initialData;
+
+  useEffect(() => {
+    if (open) {
+      setName(initialData?.name || '');
+      setDescription(initialData?.description || '');
+    }
+  }, [open, initialData]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
-      const response = await createCategory({ name, description });
+      let response;
+      if (isEditMode && initialData?.id) {
+        response = await updateCategory(initialData.id, { name, description });
+      } else {
+        response = await createCategory({ name, description });
+      }
 
       if (response.success) {
         toast.success(response.message);
         onSuccess();
         onClose();
-        setName('');
-        setDescription('');
-        router.refresh();
+        if (!isEditMode) {
+          setName('');
+          setDescription('');
+        }
       } else {
-        setError(response.message);
-        toast.error(response.message || 'Failed to create category');
+        toast.error(response.message || 'ব্যর্থ হয়েছে');
       }
     } catch (err: any) {
-      setError(err.message);
-      toast.error(err.message || 'Unexpected error occurred');
+      toast.error(err.message || 'সার্ভার ত্রুটি');
     } finally {
       setLoading(false);
     }
@@ -65,15 +76,15 @@ const CategoryDialog: React.FC<ICategoryDialogProps> = ({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="w-[80vw] max-w-md p-6">
         <DialogHeader>
-          <DialogTitle>নতুন ক্যাটাগরি তৈরি করুন</DialogTitle>
+          <DialogTitle>
+            {isEditMode ? 'ক্যাটাগরি আপডেট করুন' : 'নতুন ক্যাটাগরি তৈরি করুন'}
+          </DialogTitle>
         </DialogHeader>
 
         <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
-          {/* Category Name */}
           <Field>
             <FieldLabel>নাম</FieldLabel>
             <Input
-              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="উদাহরণ: ICT"
@@ -81,21 +92,15 @@ const CategoryDialog: React.FC<ICategoryDialogProps> = ({
             />
           </Field>
 
-          {/* Category Description */}
           <Field>
             <FieldLabel>বর্ণনা (ঐচ্ছিক)</FieldLabel>
             <Input
-              name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="উদাহরণ: Information and Communication Technology"
+              placeholder="বর্ণনা লিখুন..."
             />
           </Field>
 
-          {/* Error */}
-          {error && <p className="text-destructive  text-sm">{error}</p>}
-
-          {/* Buttons */}
           <div className="flex justify-end gap-2 mt-4">
             <Button
               type="button"
@@ -106,7 +111,11 @@ const CategoryDialog: React.FC<ICategoryDialogProps> = ({
               বাতিল করুন
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? 'তৈরি করা হচ্ছে...' : 'ক্যাটাগরি তৈরি করুন'}
+              {loading
+                ? 'প্রসেসিং...'
+                : isEditMode
+                  ? 'আপডেট করুন'
+                  : 'তৈরি করুন'}
             </Button>
           </div>
         </form>

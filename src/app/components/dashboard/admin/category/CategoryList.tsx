@@ -1,6 +1,7 @@
 'use client';
 
 import CategoryCard from '@/app/components/dashboard/admin/category/CategoryCard';
+import CategoryDialog from '@/app/components/dashboard/admin/category/CategoryDialog';
 import DeleteConfirmationDialog from '@/app/components/shared/dashboard/DeleteConformationDialog';
 import { ICategory } from '@/interfaces/news.Interface';
 import { deleteCategory } from '@/services/category/delete.category';
@@ -17,8 +18,13 @@ export default function CategoryList({
   const [deletedId, setDeletedId] = useState<string | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [editedId, setEditedId] = useState<string | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   const router = useRouter();
+
+  const handleRefresh = () => {
+    router.refresh();
+  };
 
   const handleDelete = (id: string) => {
     setDeletedId(id);
@@ -32,13 +38,18 @@ export default function CategoryList({
 
       if (result.success) {
         toast.success(result.message);
-        router.refresh();
+        handleRefresh();
       } else {
         toast.error(result.message);
       }
     } catch (error) {
       toast.error('Failed to delete category');
     }
+  };
+
+  const handleEdit = (id: string) => {
+    setEditedId(id);
+    setIsEditDialogOpen(true);
   };
 
   return (
@@ -53,10 +64,17 @@ export default function CategoryList({
             isActive={selectedId === cat.id}
             onClick={(id) => setSelectedId(id)}
             onDelete={handleDelete}
-            onEdit={(id) => setEditedId(id)}
+            onEdit={handleEdit}
           />
         ))}
       </div>
+
+      <CategoryDialog
+        open={isEditDialogOpen}
+        onClose={() => setIsEditDialogOpen(false)}
+        onSuccess={handleRefresh}
+        initialData={categories.find((cat) => cat.id === editedId) || null}
+      />
 
       <DeleteConfirmationDialog
         title="Confirm Delete"
