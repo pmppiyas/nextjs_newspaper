@@ -2,7 +2,7 @@ export interface ICategory {
   id: string;
   name: string;
   description?: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface INews {

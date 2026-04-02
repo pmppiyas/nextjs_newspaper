@@ -4,9 +4,17 @@ import CategoryDialog from '@/app/components/dashboard/admin/category/CategoryDi
 import ReusableHeader from '@/app/components/shared/ReusableHeader';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const CategoryHeader = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const router = useRouter();
+
+  const handleRefresh = () => {
+    router.refresh();
+  };
+
   return (
     <div>
       <ReusableHeader
@@ -25,7 +33,10 @@ const CategoryHeader = () => {
       <CategoryDialog
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        onSuccess={() => setIsDialogOpen(false)}
+        onSuccess={() => {
+          setIsDialogOpen(false);
+          handleRefresh();
+        }}
       />
     </div>
   );
