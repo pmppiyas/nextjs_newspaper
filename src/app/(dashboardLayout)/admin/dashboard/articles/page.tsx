@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import NewsCardSkeleton from '@/app/components/shared/news/NewsCardSeletonX';
+import NewsCardSkeleton from '@/app/components/shared/skeleton/NewsCardSeletonX';
 import NewsListWrapper from '@/app/components/dashboard/admin/allNews/NewsListWrapper';
 import NewsHeader from '@/app/components/dashboard/admin/allNews/NewsHeader';
 
