@@ -4,7 +4,7 @@ import { getAllCategories } from '@/services/category/get.allCategory';
 const CategoryWrapper = async () => {
   const { categories } = await getAllCategories();
 
-  return <CategoryList categories={categories} />;
+  return <CategoryList initialCategories={categories} />;
 };
 
 export default CategoryWrapper;

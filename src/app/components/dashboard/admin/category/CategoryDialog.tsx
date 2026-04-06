@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { createCategory } from '@/services/category/post.category';
 import { ICategory } from '@/interfaces/news.Interface';
-import { updateCategory } from '@/services/category/update.Category';
+import { updateCategory } from '@/services/category/update.category';
 
 interface ICategoryDialogProps {
   open: boolean;
