@@ -3,6 +3,7 @@ import { Menu } from 'lucide-react';
 import Logo from '@/app/components/shared/Logo';
 import Link from 'next/link';
 import SocialIcon from '@/app/components/shared/navbar/SocialIcon';
+import DateLocation from '@/app/components/shared/navbar/DateLocation';
 
 const categories = [
   'জাতীয়',
@@ -40,7 +41,7 @@ const MobileMenu = () => {
               </li>
             ))}
           </ul>
-
+          <DateLocation />
           <SocialIcon />
         </div>
       </SheetContent>

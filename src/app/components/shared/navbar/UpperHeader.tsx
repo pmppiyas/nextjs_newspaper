@@ -1,19 +1,12 @@
 import Logo from '@/app/components/shared/Logo';
+import DateLocation from '@/app/components/shared/navbar/DateLocation';
 import MobileMenu from '@/app/components/shared/navbar/MobileMenu';
 import SocialIcon from '@/app/components/shared/navbar/SocialIcon';
 import { getMe } from '@/services/auth/getMe';
-import { MapPin, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
 const UpperHeader = async () => {
   const user = await getMe();
-
-  const today = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 
   return (
     <header className="border-b ">
@@ -25,23 +18,13 @@ const UpperHeader = async () => {
         </div>
 
         {/* Desktop Header */}
-        <div className=" hidden md:flex items-center justify-between py-3 px-8  ">
+        <div className=" hidden md:flex items-center justify-between py-3 px-4  ">
           <div>
             <Logo />
           </div>
 
           {/* Center - Date & Location */}
-          <div className=" flex items-center  justify-center gap-4">
-            <div className="flex items-center justify-center gap-1 text-sm">
-              <Calendar size={16} />
-              <span>{today}</span>
-            </div>
-
-            <div className="flex items-center justify-center gap-1 text-sm ">
-              <MapPin size={16} />
-              <span>Gaibandha, Bangladesh</span>
-            </div>
-          </div>
+          <DateLocation />
 
           {/* Right - Social Icons */}
           <div className="flex gap-4 items-center justify-center">
