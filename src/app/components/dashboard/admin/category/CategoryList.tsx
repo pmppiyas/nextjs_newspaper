@@ -6,7 +6,7 @@ import DeleteConfirmationDialog from '@/app/components/shared/dashboard/DeleteCo
 import { ICategory } from '@/interfaces/news.Interface';
 import { deleteCategory } from '@/services/category/delete.category';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import {
   DragDropContext,
@@ -29,6 +29,10 @@ export default function CategoryList({
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    setCategories(initialCategories);
+  }, [initialCategories]);
 
   const handleRefresh = () => {
     router.refresh();

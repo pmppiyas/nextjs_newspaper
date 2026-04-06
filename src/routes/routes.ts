@@ -33,6 +33,11 @@ export const adminRoutes: RouteSection[] = [
         href: '/admin/dashboard/categories',
         iconName: 'Tags',
       },
+      {
+        title: 'Bookmarks',
+        href: '/admin/dashboard/bookmarks',
+        iconName: 'Bookmark',
+      },
     ],
   },
   {
