@@ -29,3 +29,11 @@ export interface IReaderStats {
   bookmarks: number;
   readingHours?: number;
 }
+
+export interface IJournalistStats {
+  total: number;
+  approve: number;
+  pending: number;
+  reject: number;
+  views: number;
+}

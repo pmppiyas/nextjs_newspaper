@@ -1,6 +1,6 @@
 import { StatsCard } from '@/app/components/shared/dashboard/StatsCard';
 import { IReaderStats } from '@/interfaces/dashboard.interface';
-import { BookOpen, Bookmark, MessageSquare, History } from 'lucide-react';
+import { BookOpen, Bookmark, MessageSquare } from 'lucide-react';
 
 const ReaderDashboardStats = ({ stats }: { stats: IReaderStats }) => {
   const { readNews, bookmarks, comments } = stats;
