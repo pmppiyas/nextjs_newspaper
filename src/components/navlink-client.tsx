@@ -20,7 +20,11 @@ const NavLinkClient = ({ href, title, iconName }: NavLinkProps) => {
     ? `${pathname}?${searchParams.toString()}`
     : pathname;
 
-  const isActive = fullCurrentPath === href || pathname === href;
+  const hasQueryInHref = href.includes('?');
+
+  const isActive = hasQueryInHref
+    ? fullCurrentPath === href
+    : pathname === href && !searchParams.toString();
 
   const Icon = (Icons as any)[iconName] as LucideIcon;
 

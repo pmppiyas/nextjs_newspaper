@@ -3,8 +3,8 @@ import Empty from '@/app/components/shared/Empty';
 import { INews } from '@/interfaces/news.Interface';
 import { myNews } from '@/services/news/get.myNews';
 
-const MyArticlesWrapper = async () => {
-  const { allNews, count } = await myNews();
+const MyArticlesWrapper = async ({ status }: { status: string }) => {
+  const { allNews, count } = await myNews(status);
 
   return (
     <div>
