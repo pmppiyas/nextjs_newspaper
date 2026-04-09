@@ -21,7 +21,7 @@ const JournalistPageHeader = () => {
         {
           label: 'আমার সংবাদ',
           variant: 'outline',
-          onClick: () => router.push('/journalist/dashboard/my-articles'),
+          onClick: () => router.push('/journalist/dashboard/articles'),
           icon: <BookOpen className="w-4 h-4" />,
         },
         {
