@@ -98,7 +98,7 @@ export const journalistRoutes: RouteSection[] = [
       },
       {
         title: 'My News',
-        href: '/journalist/dashboard/my-articles',
+        href: '/journalist/dashboard/articles',
         iconName: 'BookOpen',
       },
       {

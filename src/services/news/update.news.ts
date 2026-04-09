@@ -9,7 +9,6 @@ export const updateNews = async ({
 }) => {
   const res = await serverFetch.patch(`post/edit?newsId=${newsId}`, payload);
 
-  console.log('Response from server:', res);
   if (!res.ok) {
     return { success: false, message: 'Failed to update news' };
   }
