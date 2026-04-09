@@ -98,12 +98,12 @@ export const journalistRoutes: RouteSection[] = [
       },
       {
         title: 'My News',
-        href: '/journalist/dashboard/articles',
+        href: '/journalist/dashboard/articles?status=approved',
         iconName: 'BookOpen',
       },
       {
-        title: 'Pending Approval',
-        href: '/journalist/dashboard/pending',
+        title: 'Pending News',
+        href: '/journalist/dashboard/articles?status=pending',
         iconName: 'Clock',
       },
     ],

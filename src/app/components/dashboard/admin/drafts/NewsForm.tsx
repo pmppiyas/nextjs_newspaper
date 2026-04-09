@@ -9,15 +9,16 @@ import { postNews } from '@/services/news/post.news';
 import { CategorySelector } from '@/app/components/dashboard/admin/drafts/CategorySelector';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
-
 import type { ICategory } from '@/interfaces/news.Interface';
-
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
+import { MAX_IMAGE_SIZE } from '@/constant/news.constant';
+import { useRouter } from 'next/navigation';
 
 const NewsForm = ({ categories }: { categories: ICategory[] }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+
+  const router = useRouter();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -47,6 +48,7 @@ const NewsForm = ({ categories }: { categories: ICategory[] }) => {
       if (result.success) {
         toast.success(result.message || 'সংবাদ সফলভাবে পোস্ট হয়েছে।');
         form.reset();
+        router.push('pending');
         setPreview(null);
         setCategoryId(null);
       } else {

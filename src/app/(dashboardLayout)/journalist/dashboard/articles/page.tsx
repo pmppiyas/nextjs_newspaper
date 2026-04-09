@@ -3,13 +3,19 @@ import MyArticlesWrapper from '@/app/components/dashboard/journalist/articles/My
 import NewsCardSkeleton from '@/app/components/shared/skeleton/NewsCardSeletonX';
 import { Suspense } from 'react';
 
-const page = () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ status: string }>;
+}) => {
+  const params = await searchParams;
+  const currentStatus = params.status?.toUpperCase();
+
   return (
     <div>
-      <MyArticlesHeader />
-
+      <MyArticlesHeader status={currentStatus} />
       <Suspense fallback={<NewsCardSkeleton />}>
-        <MyArticlesWrapper />
+        <MyArticlesWrapper status={currentStatus} />
       </Suspense>
     </div>
   );
